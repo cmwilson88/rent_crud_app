@@ -6,7 +6,7 @@ export const getAllPosts = () =>
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(status)
       .then(json)
-      .then(response => dispatch({ type: GET_ALL_POSTS, posts: response.posts }))
+      .then(response => dispatch({ type: GET_ALL_POSTS, posts: response }))
       .catch(error => console.log(error));
 
 export const getPostById = id =>

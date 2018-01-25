@@ -4,7 +4,7 @@ const posts = (state = {}, action) => {
   switch (action.type) {
     case GET_ALL_POSTS:
       return action.posts;
-    case GET_POST: 
+    case GET_POST:
       return action.selectedPost;
     default:
       return state;

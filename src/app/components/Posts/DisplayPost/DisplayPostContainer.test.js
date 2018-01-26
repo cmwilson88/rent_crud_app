@@ -5,6 +5,8 @@ import { DisplayPostContainer } from './DisplayPostContainer';
 describe('DisplayPostContainer', () => {
   const initialProps = {
     getPostById: jest.fn(),
+    getCommentsByPost: jest.fn(),
+    comments: [],
     post: {},
     match: {
       params: {

@@ -1,5 +1,9 @@
 import commentReducer from '../reducer';
-import { GET_COMMENTS_BY_POST, POST_COMMENT, DELETE_COMMENT } from '../constants';
+import { 
+  GET_COMMENTS_BY_POST,
+  POST_COMMENT,
+  DELETE_COMMENT,
+  UPDATE_COMMENT } from '../constants';
 
 describe('commentReducer', () => {
   const commentData = {
@@ -44,5 +48,31 @@ describe('commentReducer', () => {
     };
     const response = commentReducer(state, { type: DELETE_COMMENT, id: 1 });
     expect(response.comments.length).toEqual(0);
+  });
+
+  it('Updates a comment', () => {
+    const state = {
+      comments: [
+        {
+          id: 1,
+          name: 'John Smith',
+          email: 'john@john.com',
+          body: 'asdf'
+        }
+      ]
+    };
+
+    const updatedComment = {
+      id: 1,
+      name: 'George McFly',
+      email: 'john@john.com',
+      body: 'updated body'
+    };
+    const response = commentReducer(state, { type: UPDATE_COMMENT, id: 1, comment: updatedComment });
+    expect(response.comments[0]).toEqual(updatedComment);
+    expect(response.comments[0] === state.comments[0]).toBe(false);
+    
+    const emptyState = commentReducer({}, { type: UPDATE_COMMENT, id: 1, comment: updatedComment });
+    expect(emptyState.comments).toEqual(null);
   });
 });

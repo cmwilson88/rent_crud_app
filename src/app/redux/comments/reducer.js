@@ -1,4 +1,8 @@
-import { GET_COMMENTS_BY_POST, POST_COMMENT, DELETE_COMMENT } from './constants';
+import { 
+  GET_COMMENTS_BY_POST,
+  POST_COMMENT,
+  DELETE_COMMENT,
+  UPDATE_COMMENT } from './constants';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -16,6 +20,13 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         comments: state.comments ? state.comments.filter(comment => comment.id !== action.id) : []
+      };
+    case UPDATE_COMMENT:
+      return {
+        ...state,
+        comments: state.comments ?
+          state.comments.map(comment => (comment.id === action.id ? action.comment : comment))
+          : null
       }
     default:
       return state;

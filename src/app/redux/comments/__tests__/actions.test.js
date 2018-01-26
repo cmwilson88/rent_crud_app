@@ -1,7 +1,11 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock/es5/server';
-import { GET_COMMENTS_BY_POST, POST_COMMENT, DELETE_COMMENT } from '../constants';
+import { 
+  GET_COMMENTS_BY_POST,
+  POST_COMMENT, 
+  DELETE_COMMENT,
+  UPDATE_COMMENT } from '../constants';
 import * as actions from '../actions';
 
 const createMockStore = configureMockStore([thunk]);
@@ -39,9 +43,20 @@ const mockDeleteComment = {
   comments: []
 };
 
+const mockUpdateComment = {
+  comment: {
+    postId: 1,
+    id: 101,
+    name: 'Updated Name',
+    email: 'smith@smith.com',
+    body: 'This is an updated new comment'
+  }
+};
+
 fetchMock.get('https://jsonplaceholder.typicode.com/posts/1/comments', mockGetAllByPost);
 fetchMock.post('https://jsonplaceholder.typicode.com/comments', mockPostComment);
 fetchMock.delete('https://jsonplaceholder.typicode.com/comments/1', mockDeleteComment);
+fetchMock.put('https://jsonplaceholder.typicode.com/comments/1', mockUpdateComment);
 
 describe('Comments Actions', () => {
   it('creates an async actiont o fetch all of the comments', () => {
@@ -66,6 +81,21 @@ describe('Comments Actions', () => {
   it('creates an async action to delete a comment', () => {
     return store.dispatch(actions.deleteComment(1)).then(() => {
       expect(store.getActions()[2]).toEqual({ type: DELETE_COMMENT, id: 1 });
+    });
+  });
+
+  it('creates an async action to update a comment', () => {
+    const updatedComment = {
+      comment: {
+        postId: 1,
+        id: 101,
+        name: 'Updated Name',
+        email: 'smith@smith.com',
+        body: 'This is an updated new comment'
+      }
+    };
+    return store.dispatch(actions.updateComment(1, updatedComment)).then(() => {
+      expect(store.getActions()[3]).toEqual({ type: UPDATE_COMMENT, id: 1, comment: mockUpdateComment });
     });
   });
 });

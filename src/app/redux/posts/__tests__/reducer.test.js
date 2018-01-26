@@ -26,12 +26,12 @@ describe('postReducer', () => {
   };
 
   it('fetches and sets the posts data', () => {
-    expect(postReducer({}, { type: GET_ALL_POSTS, posts: postData.posts }))
-      .toEqual(postData.posts);
+    const response = postReducer({}, { type: GET_ALL_POSTS, posts: postData.posts });
+    expect(response.posts).toEqual(postData.posts);
   });
 
   it('fetches and sets the selectedPost data', () => {
-    expect(postReducer({}, { type: GET_POST, selectedPost: postData.selectedPost }))
-      .toEqual(postData.selectedPost);
-  })
+    const response = postReducer({}, { type: GET_POST, selectedPost: postData.selectedPost });
+    expect(response.selectedPost).toEqual(postData.selectedPost);
+  });
 });

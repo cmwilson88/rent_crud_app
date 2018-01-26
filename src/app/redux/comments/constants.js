@@ -1,0 +1,3 @@
+module.exports = {
+  GET_COMMENTS_BY_POST: 'GET_COMMENTS_BY_POST'
+}

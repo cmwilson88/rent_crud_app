@@ -1,12 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getAllPosts } from './redux/posts/actions';
 import logo from './logo.svg';
 import './App.css';
 
 import PostListContainer from './components/Posts/PostList/PostListContainer';
 
-export const App = props =>
+export const App = () =>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,4 +16,4 @@ export const App = props =>
       <PostListContainer />
     </div>;
 
-export default connect(null, { getAllPosts })(App);
+export default App;

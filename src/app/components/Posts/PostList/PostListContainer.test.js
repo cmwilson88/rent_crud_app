@@ -4,7 +4,8 @@ import { PostListContainer } from './PostListContainer';
 
 describe('PostListContainer', () => {
   const initialProps = {
-    getAllPosts: jest.fn()
+    getAllPosts: jest.fn(),
+    getAllUsers: jest.fn()
   };
   const component = shallow(<PostListContainer {...initialProps} />);
   it('renders properly', () => {

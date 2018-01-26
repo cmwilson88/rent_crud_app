@@ -7,7 +7,7 @@ const PostListItem = (props) => {
   return (
     <div className="post-list-item">
       <h3>{post.title}</h3>
-      <p>{post.body}</p>
+      <p>{post.author}</p>
     </div>
   );
 };

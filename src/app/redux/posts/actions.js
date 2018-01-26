@@ -14,6 +14,6 @@ export const getPostById = id =>
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then(status)
       .then(json)
-      .then(response => dispatch({ type: GET_POST, selectedPost: response.post }))
+      .then(response => dispatch({ type: GET_POST, selectedPost: response }))
       .catch(error => console.log(error));
 

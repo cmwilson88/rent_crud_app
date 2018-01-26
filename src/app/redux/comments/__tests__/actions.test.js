@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock/es5/server';
-import { GET_COMMENTS_BY_POST } from '../constants';
+import { GET_COMMENTS_BY_POST, POST_COMMENT, DELETE_COMMENT } from '../constants';
 import * as actions from '../actions';
 
 const createMockStore = configureMockStore([thunk]);
@@ -25,12 +25,47 @@ const mockGetAllByPost = {
   ]
 };
 
+const mockPostComment = {
+  comment: {
+    postId: 1,
+    id: 101,
+    name: 'John Smith',
+    email: 'smith@smith.com',
+    body: 'This is a new comment'
+  }
+};
+
+const mockDeleteComment = {
+  comments: []
+};
+
 fetchMock.get('https://jsonplaceholder.typicode.com/posts/1/comments', mockGetAllByPost);
+fetchMock.post('https://jsonplaceholder.typicode.com/comments', mockPostComment);
+fetchMock.delete('https://jsonplaceholder.typicode.com/comments/1', mockDeleteComment);
 
 describe('Comments Actions', () => {
   it('creates an async actiont o fetch all of the comments', () => {
     return store.dispatch(actions.getCommentsByPost(1)).then(() => {
       expect(store.getActions()[0]).toEqual({ type: GET_COMMENTS_BY_POST, comments: mockGetAllByPost });
-    })
+    });
+  });
+
+  it('creates an async action to post a comment', () => {
+    const newComment = {
+      postId: 1,
+      id: 101,
+      name: 'John Smith',
+      email: 'smith@smith.com',
+      body: 'This is a new comment'
+    };
+    return store.dispatch(actions.postComment(newComment)).then(() => {
+      expect(store.getActions()[1]).toEqual({ type: POST_COMMENT, comment: mockPostComment });
+    });
+  });
+
+  it('creates an async action to delete a comment', () => {
+    return store.dispatch(actions.deleteComment(1)).then(() => {
+      expect(store.getActions()[2]).toEqual({ type: DELETE_COMMENT, id: 1 });
+    });
   });
 });

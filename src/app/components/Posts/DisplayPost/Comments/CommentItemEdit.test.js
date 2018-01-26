@@ -5,8 +5,11 @@ import CommentItemEdit from './CommentItemEdit';
 describe('CommentItemEdit', () => {
   const initialProps = {
     comment: {},
-    toggleEditing: jest.fn(),
+    errors: {},
+    handleInputChange: jest.fn(),
+    cancelEditComment: jest.fn(),
     updateComment: jest.fn(),
+    deleteComment: jest.fn()
   };
   const component = shallow(<CommentItemEdit {...initialProps} />);
 

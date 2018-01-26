@@ -29,7 +29,7 @@ export class CommentItemContainer extends Component {
   handleInputChange = (event) => {
     this.setState({
       comment: {
-        ...this.state.item,
+        ...this.state.comment,
         [event.target.name]: event.target.value
       }
     });
@@ -49,7 +49,6 @@ export class CommentItemContainer extends Component {
     return isEditing ?
       <CommentItemEdit
         handleInputChange={this.handleInputChange}
-        toggleEditing={this.toggleEditing}
         cancelEditComment={this.cancelEditComment}
         updateComment={this.updateComment}
         deleteComment={this.deleteComment}

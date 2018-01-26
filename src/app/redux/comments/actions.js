@@ -39,7 +39,7 @@ export const deleteComment = id =>
       .then(response => dispatch({ type: DELETE_COMMENT, id }))
       .catch(err => console.log(err));
  
-export const updateComment = (id, updatedComment) => 
+export const updateComment = (id, updatedComment) =>
   dispatch =>
     fetch(`https://jsonplaceholder.typicode.com/comments/${id}`, {
       method: 'PUT',

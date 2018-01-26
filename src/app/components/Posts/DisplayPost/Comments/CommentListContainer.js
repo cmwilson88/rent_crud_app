@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import CommentItem from './CommentItem';
+import CommentItemContainer from './CommentItemContainer';
 
 export class CommentListContainer extends Component {
   render() {
     const { comments } = this.props;
     const commentList = comments.map(comment =>
-      <CommentItem key={comment.id} comment={comment} />);
+      <CommentItemContainer key={comment.id} comment={comment} />);
+    
     return comments ? (
       <div>{commentList}</div>
     ) : null;

@@ -1,0 +1,37 @@
+.comment-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem .8rem;
+}
+
+.comment-item:nth-child(even) {
+  background-color: #eee;
+}
+
+.comment-item__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 1.6rem;
+}
+
+.comment-item__name {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+
+.comment-item__email {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.comment-item__body {
+  width: 80%;
+  margin: 0 0 1.6rem 1.6rem;
+}
+
+.comment-edit-btn {
+  align-self: flex-end;
+}
+

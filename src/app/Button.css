@@ -1,0 +1,47 @@
+.btn-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  text-transform: uppercase;
+
+
+  background: transparent;
+
+  color: inherit;
+  font: inherit;
+
+  line-height: normal;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.btn--square {
+  padding: .8rem 1.5rem;
+  border-radius: 10px;
+}
+
+.btn--green {
+  color: white;
+  background-color: lightseagreen
+}
+
+.btn--red {
+  color: white;
+  background-color: lightcoral
+}

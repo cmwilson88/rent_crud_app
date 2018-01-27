@@ -10,7 +10,7 @@ describe('DisplayPostContainer', () => {
     post: {},
     match: {
       params: {
-        id: 1
+        id: '1'
       }
     }
   };

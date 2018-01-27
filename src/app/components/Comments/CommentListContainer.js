@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import validateInput from '../../utils/validations/comments';
+import './CommentList.css';
 
 // Component Imports
 import CommentItemContainer from './CommentItem/CommentItemContainer';
@@ -68,12 +69,14 @@ export class CommentListContainer extends Component {
   render() {
     const { comments } = this.props;
     const { newComment, errors } = this.state;
+    // Create list of comments if comments exists on props
     const commentList = comments ? comments.map(comment =>
       <CommentItemContainer key={comment.id} comment={comment} />)
       : null;
     
     return comments ? (
-      <div>
+      <div className="comment-list">
+        <h3 className="comment-list__title">Comments:</h3>
         {commentList}
         <CommentNewForm
           addComment={this.addComment}
@@ -82,12 +85,16 @@ export class CommentListContainer extends Component {
           comment={newComment}
           errors={errors} />
       </div>
-    ) : <CommentNewForm
-          addComment={this.addComment}
-          cancelAddComment={this.cancelAddComment}
-          handleInputChange={this.handleInputChange}
-          comment={newComment}
-          errors={errors} />;
+    ) :
+      <div className="comment-list">
+        <h3 className="comment-list__title">Add A Comment</h3>
+        <CommentNewForm
+              addComment={this.addComment}
+              cancelAddComment={this.cancelAddComment}
+              handleInputChange={this.handleInputChange}
+              comment={newComment}
+              errors={errors} />;
+      </div>;
   }
 }
 

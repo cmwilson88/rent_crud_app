@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './PostList.css';
+
+// Component Imports
+import PostList from './PostList';
+
+// Redux Imports
 import { getAllPosts } from '../../../redux/posts/actions';
 import { getAllUsers } from '../../../redux/users/actions';
 import { addUserToPost } from '../../../redux/posts/selectors';
 
-import PostList from './PostList';
 
 export class PostListContainer extends Component {
   // Local methods
@@ -20,6 +25,7 @@ export class PostListContainer extends Component {
   render() {
     const { posts } = this.props;
     
+    // Render list if we receive posts from redux
     return posts ? (
         <PostList posts={posts} />
     ) : null;

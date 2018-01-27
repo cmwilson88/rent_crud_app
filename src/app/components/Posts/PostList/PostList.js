@@ -9,7 +9,9 @@ const PostList = (props) => {
       <PostListItem key={post.id} post={post} />);
 
   return (
-    <div>{postList}</div>
+    <section className="post-list">
+      {postList}
+    </section>
   );
 };
 

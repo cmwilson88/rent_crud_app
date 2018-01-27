@@ -1,3 +1,7 @@
 .app__content {
   padding: 3rem;
 }
+
+.error {
+  color: red;
+}

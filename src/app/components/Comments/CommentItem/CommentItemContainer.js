@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import validateInput from '../../../utils/validations/comments';
+import './CommentItem.css';
 
 // Component Imports
 import CommentItemDisplay from './CommentItemDisplay';

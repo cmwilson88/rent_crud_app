@@ -7,11 +7,10 @@ import DisplayPostItem from './DisplayPostItem';
 const DisplayPost = (props) => {
   const { post, comments } = props;
   return (
-    <div>
+    <div className="post">
       <DisplayPostItem post={post} />
-      { comments ?
-        <CommentListContainer comments={comments} />
-        : null}
+      <hr className="post__hr" />
+      <CommentListContainer comments={comments} />
     </div>
   )
 }

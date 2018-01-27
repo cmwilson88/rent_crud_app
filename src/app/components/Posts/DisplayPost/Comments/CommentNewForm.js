@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const CommentNewForm = (props) => {
   const {
     comment,
+    errors,
     addComment,
     cancelAddComment,
     handleInputChange
@@ -17,17 +18,20 @@ const CommentNewForm = (props) => {
       type="text"
       value={comment.name}
       onChange={handleInputChange} />
+    {errors && <span>{errors.name}</span>}
     <label htmlFor="body">Body</label>
     <textarea
       name="body"
       value={comment.body}
       onChange={handleInputChange} />
+    {errors && <span>{errors.body}</span>}
     <label htmlFor="email">Email</label>
     <input
       name="email"
       type="email"
       value={comment.email}
       onChange={handleInputChange} />
+    {errors && <span>{errors.email}</span>}
     <button onClick={() => addComment(comment)}>Post</button>
     <button onClick={cancelAddComment}>Cancel</button>
   </div>

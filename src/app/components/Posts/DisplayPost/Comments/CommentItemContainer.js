@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import validateInput from '../../../../utils/validations/comments';
 
+// Component Imports
 import CommentItemDisplay from './CommentItemDisplay';
 import CommentItemEdit from './CommentItemEdit';
 
-import {
-  updateComment,
-  deleteComment
-} from '../../../../redux/comments/actions';
+// Redux Actions
+import { updateComment, deleteComment } from '../../../../redux/comments/actions';
 
 export class CommentItemContainer extends Component {
   constructor(props) {
@@ -21,11 +21,23 @@ export class CommentItemContainer extends Component {
     };
   }
 
+  // Validate Inputs
+  isValid = () => {
+    const { errors, isValid } = validateInput(this.state.comment);
+    if (!isValid) {
+      this.setState({
+        errors
+      });
+    }
+    return isValid;
+  }
+
   // CommentItemDisplay methods
-  toggleEditing = () => this.setState({ isEditing: !this.state.isEditing })
-  
+  toggleEditing = () => this.setState({ isEditing: !this.state.isEditing });
+
   // CommentItemEdit methods
   cancelEditComment = () => this.setState({ comment: this.props.comment, isEditing: false })
+  deleteComment = id => this.props.deleteComment(id);
   handleInputChange = (event) => {
     this.setState({
       comment: {
@@ -35,14 +47,15 @@ export class CommentItemContainer extends Component {
     });
   }
   updateComment = (comment) => {
-    this.setState({
-      errors: {},
-      isEditing: false
-    });
-    this.props.updateComment(comment.id, comment);
+    if (this.isValid()) {
+      this.setState({
+        errors: {},
+        isEditing: false
+      });
+      this.props.updateComment(comment.id, comment);
+    }
   }
-  deleteComment = id => this.props.deleteComment(id);
-  
+
   render() {
     const { isEditing, comment, errors } = this.state;
 

@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 
 const CommentItemEdit = (props) => {
-  const { 
+  const {
     comment,
     updateComment,
     deleteComment,
     handleInputChange,
     errors,
-    cancelEditComment } = props;
+    cancelEditComment
+  } = props;
   return (
     <div>
       <button onClick={() => deleteComment(comment.id)}>Delete</button>
@@ -21,17 +22,20 @@ const CommentItemEdit = (props) => {
         type="text"
         value={comment.name}
         onChange={handleInputChange} />
+      {errors && <span>{errors.name}</span>}
       <label htmlFor="body">Body</label>
       <textarea
         name="body"
         value={comment.body}
         onChange={handleInputChange} />
+      {errors && <span>{errors.body}</span>}
       <label htmlFor="email">Email</label>
       <input
         name="email"
         type="email"
         value={comment.email}
         onChange={handleInputChange} />
+      {errors && <span>{errors.email}</span>}
     </div>
   );
 };

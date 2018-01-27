@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import validateInput from '../../../../utils/validations/comments';
 
+// Component Imports
 import CommentItemContainer from './CommentItemContainer';
 import CommentNewForm from './CommentNewForm';
 
-// Redux Actions
+// Redux Imports
 import { postComment } from '../../../../redux/comments/actions';
 
 export class CommentListContainer extends Component {
@@ -17,18 +19,32 @@ export class CommentListContainer extends Component {
         name: '',
         email: '',
         body: ''
-      }
+      },
+      errors: {}
     };
+  }
+
+  // Validate Inputs
+  isValid = () => {
+    const { errors, isValid } = validateInput(this.state.newComment);
+    if (!isValid) {
+      this.setState({
+        errors
+      });
+    }
+    return isValid;
   }
 
   // Local methods for redux actions
   addComment = (comment) => {
-    this.props.postComment({
-      ...comment,
-      userId: 1,
-      id: Math.floor(Math.random() * 500) + 501
-    });
-    this.cancelAddComment();
+    if (this.isValid()) {
+      this.props.postComment({
+        ...comment,
+        userId: 1,
+        id: Math.floor(Math.random() * 500) + 501
+      });
+      this.cancelAddComment();
+    }
   }
   cancelAddComment = () => {
     this.setState({
@@ -36,7 +52,8 @@ export class CommentListContainer extends Component {
         name: '',
         email: '',
         body: ''
-      }
+      },
+      errors: {}
     });
   }
 
@@ -50,7 +67,7 @@ export class CommentListContainer extends Component {
   }
   render() {
     const { comments } = this.props;
-    const { newComment } = this.state;
+    const { newComment, errors } = this.state;
     const commentList = comments ? comments.map(comment =>
       <CommentItemContainer key={comment.id} comment={comment} />)
       : null;
@@ -62,13 +79,15 @@ export class CommentListContainer extends Component {
           addComment={this.addComment}
           cancelAddComment={this.cancelAddComment}
           handleInputChange={this.handleInputChange}
-          comment={newComment} />
+          comment={newComment}
+          errors={errors} />
       </div>
     ) : <CommentNewForm
           addComment={this.addComment}
           cancelAddComment={this.cancelAddComment}
           handleInputChange={this.handleInputChange}
-          comment={newComment} />;
+          comment={newComment}
+          errors={errors} />;
   }
 }
 

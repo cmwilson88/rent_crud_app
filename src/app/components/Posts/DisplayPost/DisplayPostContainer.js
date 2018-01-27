@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getPostById } from '../../../redux/posts/actions';
-import { getCommentsByPost } from '../../../redux/comments/actions';
 
+// Component Imports
 import DisplayPost from './DisplayPost';
+import ErrorPage from '../../ErrorPage';
+
+// Redux Imports
+import { getCommentsByPost } from '../../../redux/comments/actions';
+import { getPostById } from '../../../redux/posts/actions';
 
 export class DisplayPostContainer extends Component {
   componentDidMount() {
-    Promise.resolve(this.getSelectedPost(), this.getCommentsByPost()).then(this.setState({ready:true}))
+    this.getSelectedPost();
+    this.getCommentsByPost();
   }
   getSelectedPost = () => this.props.getPostById(this.props.match.params.id);
   getCommentsByPost = () => this.props.getCommentsByPost(this.props.match.params.id);
+  
   render() {
     const { post, comments } = this.props;
 
-    return post ? (
+    return post ?
       <DisplayPost post={post} comments={comments} />
-    ) : null;
+      :
+      <ErrorPage />;
   }
 }
 
@@ -26,7 +33,11 @@ DisplayPostContainer.propTypes = {
   comments: PropTypes.array,
   getPostById: PropTypes.func.isRequired,
   getCommentsByPost: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired
+    }),
+  }),
 };
 
 const mapStateToProps = state => ({

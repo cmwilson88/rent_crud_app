@@ -99,7 +99,7 @@ export class CommentListContainer extends Component {
 }
 
 CommentListContainer.propTypes = {
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array,
   postComment: PropTypes.func.isRequired
 };
 

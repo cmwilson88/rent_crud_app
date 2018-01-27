@@ -15,7 +15,7 @@ const store = createStore(
   compose(
     applyMiddleware(thunk),
     // Used to make Redux Devtools in Browser work
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 

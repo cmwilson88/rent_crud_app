@@ -7,6 +7,8 @@ import './Button.css';
 import NavigationBar from './components/NavigationBar';
 import PostListContainer from './components/Posts/PostList/PostListContainer';
 import DisplayPostContainer from './components/Posts/DisplayPost/DisplayPostContainer';
+import ErrorPage from './components/ErrorPage';
+import ConstructionPage from './components/ConstructionPage';
 
 export const App = () =>
     <div className="app">
@@ -15,7 +17,8 @@ export const App = () =>
         <Switch>
           <Route exact path="/" component={PostListContainer} />
           <Route exact path="/post/:id" component={DisplayPostContainer} />
-          <Redirect to="/" />
+          <Route exact path="/users" component ={ConstructionPage} />
+          <Route path="*" component={ErrorPage} />
         </Switch>
       </section>
     </div>;

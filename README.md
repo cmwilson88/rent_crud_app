@@ -49,6 +49,8 @@ To receive test coverate report, run the following:
 npm run test -- --coverage
 ```
 
+Currently the project needs better test coverage, but most of the redux actions are tested.
+
 ## Running the Application
 
 In your terminal, run the following command:
@@ -56,7 +58,9 @@ In your terminal, run the following command:
 npm run start
 ```
 
-This will run the development server and the web application can be accessed via localhost:3000
+This will run the development server and the web application can be accessed via localhost:3000.  The list of posts can be accessed via the home ("/") route, and individual posts and their respective comments can be found using the path ("/post/:id") where :id is the numerical id for a post.
+
+
 
 ## Key Packages
 

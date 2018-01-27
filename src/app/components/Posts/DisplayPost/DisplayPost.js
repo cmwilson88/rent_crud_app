@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CommentListContainer from './Comments/CommentListContainer';
+import CommentListContainer from '../../Comments/CommentListContainer';
 import DisplayPostItem from './DisplayPostItem';
 
 const DisplayPost = (props) => {

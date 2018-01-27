@@ -11,6 +11,7 @@ const CommentItemEdit = (props) => {
     errors,
     cancelEditComment
   } = props;
+  
   return (
     <div>
       <button onClick={() => deleteComment(comment.id)}>Delete</button>

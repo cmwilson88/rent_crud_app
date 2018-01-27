@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import validateInput from '../../../../utils/validations/comments';
+import validateInput from '../../utils/validations/comments';
 
 // Component Imports
-import CommentItemContainer from './CommentItemContainer';
+import CommentItemContainer from './CommentItem/CommentItemContainer';
 import CommentNewForm from './CommentNewForm';
 
 // Redux Imports
-import { postComment } from '../../../../redux/comments/actions';
+import { postComment } from '../../redux/comments/actions';
 
 export class CommentListContainer extends Component {
   constructor() {

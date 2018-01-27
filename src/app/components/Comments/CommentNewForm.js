@@ -42,7 +42,8 @@ CommentNewForm.propTypes = {
   comment: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
   cancelAddComment: PropTypes.func.isRequired,
-  handleInputChange: PropTypes.func.isRequired
-}
+  handleInputChange: PropTypes.func.isRequired,
+  errors: PropTypes.object
+};
 
 export default CommentNewForm;

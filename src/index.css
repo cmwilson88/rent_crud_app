@@ -1,5 +1,21 @@
-body {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  box-sizing: inherit;
+}
+
+html {
+  /* 62.5% of browser default size */
+  font-size: 62.5%
+}
+
+body {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }

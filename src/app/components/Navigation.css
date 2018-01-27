@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 3rem;
+  height: 10rem;
+  background-color: grey;
+}
+
+.navigation-brand {
+  font-size: 6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.navigation__buttons {
+  font-size: 3rem;
+}
+
+.navigation-btn:hover {
+  color: #fff;
+}

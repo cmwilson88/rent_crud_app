@@ -35,7 +35,7 @@ DisplayPostContainer.propTypes = {
   getCommentsByPost: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number.isRequired
+      id: PropTypes.string.isRequired
     }),
   }),
 };
